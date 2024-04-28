@@ -8,5 +8,9 @@ public interface CartService {
 
     ResponseEntity updateCard( CartRequest cartRequest);
 
-    ResponseEntity emptyCard(long customerId);
+    ResponseEntity emptyCard(Long customerId);
+
+    ResponseEntity addProductToCart(Long productId, Long customerId, Long quantity);
+
+    ResponseEntity removeProductFromCart(Long id);
 }

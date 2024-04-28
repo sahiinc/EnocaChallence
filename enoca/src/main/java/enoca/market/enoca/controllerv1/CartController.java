@@ -27,5 +27,16 @@ public class CartController {
         return cartService.emptyCard(customerId);
     }
 
+    @PostMapping("/AddProductToCart")
+    public ResponseEntity addProductToCart(@PathVariable Long productId, @PathVariable  Long customerId, @PathVariable  Long quantity){
+
+        return cartService.addProductToCart(productId,customerId, quantity);
+    }
+
+    @DeleteMapping("/RemoveProductFromCart")
+    public ResponseEntity removeProductFromCart(@PathVariable Long id) {
+        return cartService.removeProductFromCart(id);
+    }
+
 
 }

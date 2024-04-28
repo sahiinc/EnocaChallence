@@ -19,17 +19,15 @@ public class CustomerServiceImpl implements CustomerService {
     public ResponseEntity addCustomer(CustomerRequest customerRequest) {
 
         CustomerResponse response = new CustomerResponse();
-        response.code = 0;
-        response.status = "succeed";
-        response.message = "Müşteri kaydı başarılı";
+        response.setMessage("Müşteri kaydı başarılı");
 
         Customer customer = new Customer();
-        customer.commercialName = customerRequest.commercialName;
-        customer.firstName = customerRequest.firstName;
-        customer.lastName = customerRequest.lastName;
+        customer.setCommercialName(customerRequest.getCommercialName());
+        customer.setFirstName(customerRequest.getFirstName());
+        customer.setLastName(customerRequest.getLastName());
 
         customer = customerRepository.save(customer);
-        response.id = customer.id;
+        response.setId(customer.getId());
 
         return ResponseEntity.ok(response);
     }

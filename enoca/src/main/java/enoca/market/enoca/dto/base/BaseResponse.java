@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 public class BaseResponse {
-    public String status;
-    public int code;
+    public String status = "succeed";
+    public int code = 0;
     public String message;
 }

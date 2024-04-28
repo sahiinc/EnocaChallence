@@ -3,12 +3,16 @@ package enoca.market.enoca.entity;
 import enoca.market.enoca.entity.base.Base;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Data
 @Entity
 @Table(name = "order")
+@Getter
+@Setter
 public class Order extends Base {
     @Id
     public Long id;

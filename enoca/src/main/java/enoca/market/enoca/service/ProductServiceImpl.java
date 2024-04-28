@@ -24,17 +24,15 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public ResponseEntity createProduct(ProductRequest productRequest) {
         ProductResponse productResponse = new ProductResponse();
-        productResponse.code = 0;
-        productResponse.status = "succeed";
-        productResponse.message = "Ürün ekleme başarılı";
+        productResponse.setMessage("Ürün ekleme başarılı");
 
         Product product = new Product();
-        product.name = productRequest.name;
-        product.price = productRequest.price;
-        product.stoch = productRequest.stoch;
+        product.setName(productRequest.getName());
+        product.setPrice(productRequest.getPrice());
+        product.setStoch(productRequest.getStoch());
 
         product = productRepository.save(product);
-        productResponse.id=product.id;
+        productResponse.setId(product.getId());
 
         return ResponseEntity.ok(productResponse);
     }
@@ -47,19 +45,17 @@ public class ProductServiceImpl implements ProductService{
 
 
 
-            existingProduct.name = productRequest.name;
-            existingProduct.price=productRequest.price;
-            existingProduct.stoch=productRequest.stoch;
+            existingProduct.setName(productRequest.getName());
+            existingProduct.setPrice(productRequest.getPrice());
+            existingProduct.setStoch(productRequest.getStoch());
 
             // Güncellenmiş ürünü kaydediyoruz
             Product updatedProduct = productRepository.save(existingProduct);
 
             // Başarı mesajı ile güncellenmiş ürünü yanıt olarak döndürdük
             ProductResponse productResponse = new ProductResponse();
-            productResponse.code = 0;
-            productResponse.status = "succeed";
-            productResponse.message = "Ürün güncelleme başarılı";
-            productResponse.id = updatedProduct.id;
+            productResponse.setMessage("Ürün güncelleme başarılı");
+            productResponse.setId(updatedProduct.getId());
 
             return ResponseEntity.ok(productResponse);
         } else {
@@ -73,9 +69,7 @@ public class ProductServiceImpl implements ProductService{
 
         productRepository.deleteById(productId);
         ProductResponse productResponse = new ProductResponse();
-        productResponse.code = 0;
-        productResponse.status = "succeed";
-        productResponse.message = "Ürün silme başarılı";
+        productResponse.setMessage("Ürün silme başarılı");
         return ResponseEntity.ok(productResponse);
     }
 
@@ -87,10 +81,10 @@ public class ProductServiceImpl implements ProductService{
         List<ProductResponse> productResponses = productList.stream()
                 .map(product -> {
                     ProductResponse response = new ProductResponse();
-                    response.id = product.id;
-                    response.name=product.name;
-                    response.price=product.price;
-                    response.stoch=product.stoch;
+                    response.setId(product.getId());
+                    response.setName(product.getName());
+                    response.setPrice(product.getPrice());
+                    response.setStoch(product.getStoch());
                     return response;
                 })
                 .collect(Collectors.toList());
